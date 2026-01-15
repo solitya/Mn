@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>캐릭터 프로필 시스템</title>
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Fonts -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <style>
+        body { font-family: 'Pretendard', 'Malgun Gothic', sans-serif; }
+        /* Animation for Modal */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .animate-fadeIn { animation: fadeIn 0.2s ease-out; }
+        
+        /* Utility to hide/show */
+        .hidden { display: none !important; }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-[#fff0f3] text-[#333333] min-h-screen py-[40px] px-[20px] leading-[1.6] transition-colors duration-300">
+
+    <div class="max-w-[1100px] mx-auto">
+        
+        <!-- Character Grid -->
+        <div class="flex flex-col md:flex-row gap-[30px] mb-10">
+            
+            <!-- Card 1: Seoyun -->
+            <div id="card-seo" class="flex-1 bg-white rounded-xl overflow-hidden border border-[#dddddd] shadow-[0_4px_10px_rgba(0,0,0,0.05)] transition-colors duration-300">
+                <img src="https://mn.solitya.us/a1.jpg" 
+                     data-outer="https://mn.solitya.us/a1.jpg" 
+                     data-inner="https://mn.solitya.us/A1.jpg" 
+                     class="char-img w-full h-[500px] object-cover block">
+                
+                <div class="p-[30px]">
+                    <div class="name-row flex items-baseline gap-[12px] mb-[15px] border-b-2 border-[#eee] pb-[15px] transition-colors duration-300">
+                        <span class="text-[2.2rem] font-bold text-[#e91e63]">이서윤</span>
+                        <span class="age text-[1.3rem] text-[#666] transition-colors duration-300">22살</span>
+                        <!-- Story Button (Hidden in Outer Mode) -->
+                        <button onclick="openStory('seoyun_01.html', seoyunStoryText)" class="mode-inner hidden ml-2 text-[1.2rem] px-4 py-2 font-bold rounded border border-[#555] text-[#aaa] hover:bg-[#333] hover:text-white hover:border-[#777] transition-all cursor-pointer bg-transparent">
+                            이야기 보기
+                        </button>
+                    </div>
+
+                    <!-- Job Title -->
+                    <div class="mode-outer inline-block px-4 py-1.5 rounded-full text-white font-bold mb-[25px] text-[1.1rem] bg-[#e91e63]">
+                        초보 소설가
+                    </div>
+                    <span class="mode-inner hidden font-bold block mb-[20px] text-[#888] text-[1.1rem]">
+                        초보 소설가
+                    </span>
+
+                    <!-- Description -->
+                    <div class="desc-area text-[1.25rem] leading-[1.7] min-h-[110px] text-[#333] transition-colors duration-300">
+                        <div class="mode-outer space-y-6">
+                            <div>
+                                <span class="font-bold block mb-2 text-[1.4rem] text-black">🌸 성격</span>
+                                <p>내성적인 아이지만 친구에겐 한없이 밝은 모습을 보여줘요. 주변 사람을 배려하는 마음이 깊고 아주 작은 감정까지 세밀하게 느끼는 편입니다. 한 번 마음 먹은 일에는 엄청난 집중력을 발휘하기도 하죠.</p>
+                            </div>
+                            <div>
+                                <span class="font-bold block mb-2 text-[1.4rem] text-black">💝 관계 성격</span>
+                                <p>사랑하는 사람에게 자신의 모든 애정을 쏟아붓지만, 그만큼 상대에게 인정받고 싶어 하고 혹시나 미움받을까 봐 불안해하기도 해요. 그래서 때로는 본인보다 상대방을 훨씬 더 많이 배려하곤 합니다.</p>
+                            </div>
+                        </div>
+                        <div class="mode-inner hidden">
+                            <span class="font-bold block mt-[15px] mb-[5px]">
+                                정신불안 성격 <span class="text-[0.9em] font-normal text-[#ff7675] ml-1">(경계선 성격장애)</span>
+                            </span>
+                            누군가에게 병적으로 의존하며 타인의 시선과 평가에 극도로 취약합니다. 자기 확신이 전혀 없기에 늘 인정을 갈구하며 불안해합니다.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: Hwarin -->
+            <div id="card-hwa" class="flex-1 bg-white rounded-xl overflow-hidden border border-[#dddddd] shadow-[0_4px_10px_rgba(0,0,0,0.05)] transition-colors duration-300">
+                <img src="https://mn.solitya.us/b1.jpg" 
+                     data-outer="https://mn.solitya.us/b1.jpg" 
+                     data-inner="https://mn.solitya.us/B1.jpg" 
+                     class="char-img w-full h-[500px] object-cover block">
+                
+                <div class="p-[30px]">
+                    <div class="name-row flex items-baseline gap-[12px] mb-[15px] border-b-2 border-[#eee] pb-[15px] transition-colors duration-300">
+                        <span class="text-[2.2rem] font-bold text-[#007bff]">백화린</span>
+                        <span class="age text-[1.3rem] text-[#666] transition-colors duration-300">21살</span>
+                        <!-- Story Button (Hidden in Outer Mode) -->
+                        <button onclick="openStory('hwarin_01.html', hwarinStoryText)" class="mode-inner hidden ml-2 text-[1.2rem] px-4 py-2 font-bold rounded border border-[#555] text-[#aaa] hover:bg-[#333] hover:text-white hover:border-[#777] transition-all cursor-pointer bg-transparent">
+                            이야기 보기
+                        </button>
+                    </div>
+
+                    <!-- Job Title -->
+                    <div class="mode-outer inline-block px-4 py-1.5 rounded-full text-white font-bold mb-[25px] text-[1.1rem] bg-[#007bff]">
+                        무직(사회 초년생 지망)
+                    </div>
+                    <span class="mode-inner hidden font-bold block mb-[20px] text-[#888] text-[1.1rem]">
+                        무직(사회 초년생 지망)
+                    </span>
+
+                    <!-- Description -->
+                    <div class="desc-area text-[1.25rem] leading-[1.7] min-h-[110px] text-[#333] transition-colors duration-300">
+                        <div class="mode-outer space-y-6">
+                            <div>
+                                <span class="font-bold block mb-2 text-[1.4rem] text-black">❄️ 성격</span>
+                                <p>워낙 내성적이고 말수가 적어서 늘 조용한 분위기를 풍기는 아이입니다. 감정을 겉으로 잘 드러내지 않고 항상 차분하며, 웬만한 일에는 동요하지 않는 무던한 성격을 가졌어요.</p>
+                            </div>
+                            <div>
+                                <span class="font-bold block mb-2 text-[1.4rem] text-black">🤝 관계 성격</span>
+                                <p>누구에게나 공손하고 예의 바르게 행동하지만, 사실 타인에게 보이지 않는 벽을 두고 적당한 거리를 유지합니다. 하지만 상대방이 건네는 사소한 배려에는 아주 민감하게 반응하며, 관계에 있어 항상 신중하고 조심스럽습니다.</p>
+                            </div>
+                        </div>
+                        <div class="mode-inner hidden">
+                            <span class="font-bold block mt-[15px] mb-[5px]">
+                                정신불안 성격 <span class="text-[0.9em] font-normal text-[#74b9ff] ml-1">(해리성 장애, 생존자죄책감)</span>
+                            </span>
+                            깊은 허무주의에 빠져 자기 자신을 부정합니다. 과거의 죄책감과 해리 증상을 보이며 모든 것을 포기하고 체념한 상태입니다.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- System Command Box -->
+        <div id="cmd-box" class="font-mono transition-all duration-300 mb-10 bg-[rgba(44,62,80,0.95)] text-white p-[40px] rounded-[25px] shadow-[0_10px_30px_rgba(0,0,0,0.2)]">
+            
+            <!-- Outer Mode Content -->
+            <div class="mode-outer">
+                <h3 class="text-[#f1c40f] mb-[30px] text-[1.6rem] text-center tracking-[2px] font-bold mt-0">
+                    SYSTEM COMMANDS
+                </h3>
+                
+                <div class="mb-[20px]">
+                    <span class="font-bold text-[1.2rem] text-[#ff7675] block mb-[10px]">
+                        OOC (Out of Character)
+                    </span>
+                    <div class="text-[1rem] text-[#bdc3c7] mb-[15px]">
+                        롤플레잉을 멈추고 설정을 반영하거나 요청을 전달합니다.
+                    </div>
+                    <div class="bg-[#1a252f] p-[18px] rounded-[10px] font-mono text-[#55efc4] border-l-[5px] border-[#ff7675] whitespace-pre-line leading-relaxed">
+                        **OOC: 이미지가 저 이미지가 아닌 거 같아**
+                        **OOC: 나의 행동이나 대사를 훔쳐가지 마**
+                        **OOC: 캐릭터 성격이 오류가 났어**
+                    </div>
+                </div>
+
+                <div class="mb-[20px]">
+                    <span class="font-bold text-[1.2rem] text-[#ff7675] block mb-[10px]">
+                        요약
+                    </span>
+                    <div class="text-[1rem] text-[#bdc3c7] mb-[15px]">
+                        최근 내용을 간추려 기억 보존용 데이터를 출력합니다.
+                    </div>
+                    <div class="bg-[#1a252f] p-[18px] rounded-[10px] font-mono text-[#55efc4] border-l-[5px] border-[#ff7675]">
+                        !요약
+                    </div>
+                </div>
+
+                <div class="mb-[20px]">
+                    <span class="font-bold text-[1.2rem] text-[#ff7675] block mb-[10px]">
+                        디버그
+                    </span>
+                    <div class="text-[1rem] text-[#bdc3c7] mb-[15px]">
+                        이미지 미출력, 이미지에 관련된 기술적 오류를 해결합니다.
+                    </div>
+                    <div class="bg-[#1a252f] p-[18px] rounded-[10px] font-mono text-[#55efc4] border-l-[5px] border-[#ff7675]">
+                        !디버그
+                    </div>
+                </div>
+            </div>
+
+            <!-- Inner Mode Content -->
+            <div class="mode-inner hidden">
+                <h3 class="text-[#f44336] mt-0 mb-5 border-b border-[#444] pb-[10px] text-[1.17em] font-bold">
+                    ⚠️ INTERNAL INFO
+                </h3>
+                <pre class="m-0 font-inherit whitespace-pre-wrap overflow-x-auto">Info
+|$(턴수) | 📅 YYYY.MM.DD 요일 (Day $) | 🕛hh:mm | 날씨 | 🏠현재장소
+🧡이서윤|💦: 사정당한횟수 |❤️:{user}인식관계 |💝: 0% |👗:평상복
+💭: '이서윤속마음 20자이내'
+🤍백화린|💦: 사정당한횟수 |❤️:{user}인식관계 |💝: 0% |👗:평상복
+💭: '백화린속마음 20자이내'
+|현재상황: (성교 제외 모든 상황에는 ⚪ ,성교할시 🔞 ,구강성교시 👅 이 3개만)</pre>
+                <div class="text-[#ff7675] mt-5 font-bold leading-relaxed whitespace-pre-wrap">캐릭터들에게는 💝 정신 지수가 존재합니다.
+이 수치는 캐릭터의 정신 상태와 경계선을 나타내며, 수치가 낮을수록 정신적 불안정 상태에 가까워집니다.
+
+💝 100%: [완전치유] 상태
+→ 해당 상태에 도달하면 정신 지수는 더 이상 변하지 않고 고정됩니다.
+
+💝 최대치: 100%
+
+💝 최소치: -150%
+
+플레이를 통해 정신을 치유하여 100%에 도달하거나,
+혹은 선택에 따라 -150%까지 추락하는 전개를 진행할 수도 있습니다.</div>
+            </div>
+
+        </div>
+
+        <!-- Toggle Buttons -->
+        <div class="mt-[50px] text-left">
+            <button id="btn-inner" onclick="toggleMode(true)" class="py-[25px] px-[70px] text-[1.8rem] font-bold rounded-[15px] border-none transition-all duration-200 cursor-pointer bg-black text-white shadow-[0_5px_15px_rgba(0,0,0,0.3)] hover:scale-105">
+                내면 버튼
+            </button>
+            <button id="btn-outer" onclick="toggleMode(false)" class="hidden py-[25px] px-[70px] text-[1.8rem] font-bold rounded-[15px] transition-all duration-200 cursor-pointer bg-white text-black border-4 border-black hover:scale-105">
+                외면 버튼
+            </button>
+        </div>
+
+    </div>
+
+    <!-- Story Modal -->
+    <div id="story-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 animate-fadeIn">
+        <div class="bg-[#1a1a1a] border border-[#444] text-gray-200 rounded-xl max-w-[600px] w-full p-8 shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
+            <h3 class="text-2xl font-bold mb-6 text-white border-b border-[#333] pb-4">
+                📖 이야기 읽기
+            </h3>
+            <div id="modal-text" class="whitespace-pre-wrap leading-relaxed mb-8 text-[1.2rem] text-[#ccc]">
+                <!-- Text Injected Here -->
+            </div>
+            <div class="flex gap-4 justify-end">
+                <button onclick="closeStory()" class="px-6 py-3 text-[1.1rem] rounded-lg bg-[#333] hover:bg-[#444] text-white transition-colors cursor-pointer">
+                    취소
+                </button>
+                <button onclick="confirmStory()" class="px-6 py-3 text-[1.1rem] rounded-lg bg-white text-black font-bold hover:bg-gray-200 transition-colors cursor-pointer">
+                    확인 (이동)
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logic Script -->
+    <script>
+        // Story Texts
+        const seoyunStoryText = `소설 형식으로 적은 이야기 입니다. \n\n소설 형식으로 총 4화로 구성된 내용을 1화로 압축해 제작한 이야기이므로, 갑작스러운 빠른 전개 및 전개 생략이 있을 수 있습니다. 양해 바랍니다.\n\n또한 해당 내용을 읽지 않으셔도 스토리 챗 플레이에는 전혀 지장이 없습니다.`;
+        const hwarinStoryText = `소설 형식으로 총 22화로 구성된 내용을 5화로 압축해 제작한 이야기이므로, 갑작스러운 빠른 전개 및 전개 생략이 있을 수 있습니다. 양해 바랍니다.\n\n또한 해당 내용을 읽지 않으셔도 스토리 챗 플레이에는 전혀 지장이 없습니다.`;
+
+        // DOM Elements
+        const body = document.body;
+        const btnInner = document.getElementById('btn-inner');
+        const btnOuter = document.getElementById('btn-outer');
+        const cmdBox = document.getElementById('cmd-box');
+        
+        // Modal State
+        let currentLink = '';
+        const modal = document.getElementById('story-modal');
+        const modalText = document.getElementById('modal-text');
+
+        // Toggle Function
+        function toggleMode(isInner) {
+            const modeOuters = document.querySelectorAll('.mode-outer');
+            const modeInners = document.querySelectorAll('.mode-inner');
+            const cards = [document.getElementById('card-seo'), document.getElementById('card-hwa')];
+            const imgs = document.querySelectorAll('.char-img');
+            const nameRows = document.querySelectorAll('.name-row');
+            const ages = document.querySelectorAll('.age');
+            const descAreas = document.querySelectorAll('.desc-area');
+
+            if (isInner) {
+                // Body Style
+                body.classList.remove('bg-[#fff0f3]', 'text-[#333333]');
+                body.classList.add('bg-[#2b2b2b]', 'text-[#e0e0e0]');
+
+                // Content Toggle
+                modeOuters.forEach(el => el.classList.add('hidden'));
+                modeInners.forEach(el => el.classList.remove('hidden'));
+
+                // Images
+                imgs.forEach(img => img.src = img.dataset.inner);
+
+                // Card Styles
+                cards.forEach(card => {
+                    card.classList.remove('bg-white', 'border-[#dddddd]');
+                    card.classList.add('bg-black', 'border-[#444]');
+                });
+
+                // Text Styles
+                nameRows.forEach(row => {
+                    row.classList.remove('border-[#eee]');
+                    row.classList.add('border-[#333]');
+                });
+                ages.forEach(age => {
+                    age.classList.remove('text-[#666]');
+                    age.classList.add('text-[#888]');
+                });
+                descAreas.forEach(area => {
+                    area.classList.remove('text-[#333]');
+                    area.classList.add('text-[#ccc]');
+                });
+
+                // Command Box Style
+                cmdBox.classList.remove('bg-[rgba(44,62,80,0.95)]', 'shadow-[0_10px_30px_rgba(0,0,0,0.2)]');
+                cmdBox.classList.add('bg-black', 'border', 'border-[#444]');
+
+                // Buttons
+                btnInner.classList.add('hidden');
+                btnOuter.classList.remove('hidden');
+            } else {
+                // Body Style
+                body.classList.add('bg-[#fff0f3]', 'text-[#333333]');
+                body.classList.remove('bg-[#2b2b2b]', 'text-[#e0e0e0]');
+
+                // Content Toggle
+                modeOuters.forEach(el => el.classList.remove('hidden'));
+                modeInners.forEach(el => el.classList.add('hidden'));
+
+                // Images
+                imgs.forEach(img => img.src = img.dataset.outer);
+
+                // Card Styles
+                cards.forEach(card => {
+                    card.classList.add('bg-white', 'border-[#dddddd]');
+                    card.classList.remove('bg-black', 'border-[#444]');
+                });
+
+                // Text Styles
+                nameRows.forEach(row => {
+                    row.classList.add('border-[#eee]');
+                    row.classList.remove('border-[#333]');
+                });
+                ages.forEach(age => {
+                    age.classList.add('text-[#666]');
+                    age.classList.remove('text-[#888]');
+                });
+                descAreas.forEach(area => {
+                    area.classList.add('text-[#333]');
+                    area.classList.remove('text-[#ccc]');
+                });
+
+                // Command Box Style
+                cmdBox.classList.add('bg-[rgba(44,62,80,0.95)]', 'shadow-[0_10px_30px_rgba(0,0,0,0.2)]');
+                cmdBox.classList.remove('bg-black', 'border', 'border-[#444]');
+
+                // Buttons
+                btnInner.classList.remove('hidden');
+                btnOuter.classList.add('hidden');
+            }
+        }
+
+        // Modal Functions
+        function openStory(link, text) {
+            currentLink = link;
+            modalText.innerText = text;
+            modal.classList.remove('hidden');
+        }
+
+        function closeStory() {
+            modal.classList.add('hidden');
+            currentLink = '';
+        }
+
+        function confirmStory() {
+            if (currentLink) {
+                window.location.href = currentLink;
+                closeStory();
+            }
+        }
+    </script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
